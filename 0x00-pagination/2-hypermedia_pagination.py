@@ -64,7 +64,7 @@ class Server:
         start_index, end_index = index_range(page, page_size)
         dataset = self.dataset()
         return dataset[start_index:end_index]
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """
         Get a specific page of the dataset with hypermedia information.
@@ -73,7 +73,7 @@ class Server:
         page (int): Page number, default is 1
         page_size (int): Number of records per page, default is 10
         Returns:
-        dict: A dictionary containing the requested page, total pages, and total records
+        dict: A dictionary containing the the data and hypermedia
         """
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
