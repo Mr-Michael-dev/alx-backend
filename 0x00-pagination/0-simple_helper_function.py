@@ -6,7 +6,7 @@ function named index_range that takes two integer arguments page and page_size
 
 def index_range(page: int, page_size: int) -> tuple:
     """
-    start index and an end index corresponding to the range of
+    compute start index and an end index corresponding to the range of
     indexes to return in a list for those particular pagination parameters
 
     Arguments:
