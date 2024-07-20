@@ -8,6 +8,7 @@ import csv
 import math
 from typing import List
 
+
 def index_range(page: int, page_size: int) -> tuple:
     """
     compute start index and an end index corresponding to the range of
@@ -24,7 +25,6 @@ def index_range(page: int, page_size: int) -> tuple:
     end_index = page * page_size
 
     return (start_index, end_index)
-
 
 
 class Server:
