@@ -30,7 +30,7 @@ class LFUCache(BaseCaching):
                 del self.cache_data[key]
             elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 # Remove the first inserted key
-                MR_key= next(reversed(self.cache_data))
+                MR_key = next(reversed(self.cache_data))
                 print(f"DISCARD: {MR_key}")
                 del self.cache_data[MR_key]
             self.cache_data[key] = item
