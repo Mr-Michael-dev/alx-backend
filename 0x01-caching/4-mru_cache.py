@@ -34,7 +34,6 @@ class MRUCache(BaseCaching):
                 print(f"DISCARD: {MR_key}")
                 del self.cache_data[MR_key]
             self.cache_data[key] = item
-            self.cache_data.move_to_end(key, last=False)
 
     def get(self, key):
         """
@@ -45,6 +44,5 @@ class MRUCache(BaseCaching):
         """
 
         if key is not None and key in self.cache_data.keys():
-            self.cache_data.move_to_end(key, last=False)
             return self.cache_data[key]
         return None
