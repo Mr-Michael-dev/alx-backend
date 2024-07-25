@@ -31,7 +31,7 @@ class LIFOCache(BaseCaching):
                 # Remove the first inserted key
                 oldest_key, oldest_item = self.cache_data.popitem()
                 print(f"DISCARD: {oldest_key}")
-        self.cache_data[key] = item
+            self.cache_data[key] = item
 
     def get(self, key):
         """

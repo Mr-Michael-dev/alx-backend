@@ -32,7 +32,7 @@ class FIFOCache(BaseCaching):
                 oldest_key, oldest_item = next(iter(self.cache_data.items()))
                 print(f"DISCARD: {oldest_key}")
                 del self.cache_data[oldest_key]
-        self.cache_data[key] = item
+            self.cache_data[key] = item
 
     def get(self, key):
         """
