@@ -14,14 +14,15 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-app.config.from_object(Config)
+config = Config()
+app.config.from_object(config)
 babel = Babel(app)
 
 
 @babel.localeselector
 def get_locale() -> str:
     """determine the best match languagr with our supported languages"""
-    return request.accept_languages.best_match(app.config.['LANGUAGES'])
+    return request.accept_languages.best_match(config.LANGUAGES)
 
 
 @app.route('/')
@@ -29,9 +30,11 @@ def home() -> str:
     """returns a simple index page"""
     home_title = _("home_title")
     home_header = _("home_header")
+    current_locale = get_locale()
     return render_template('3-index.html',
                            home_title=home_title,
-                           home_header=home_header)
+                           home_header=home_header,
+                           current_locale=current_locale)
 
 
 if __name__ == '__main__':
