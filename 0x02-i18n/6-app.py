@@ -57,6 +57,8 @@ def get_locale() -> str:
     locale = request.args.get('locale')
     if locale in config.LANGUAGES:
         return locale
+    if g.user and g.user.get("locale") in config.LANGUAGES:
+        return g.user["locale"]
     return request.accept_languages.best_match(config.LANGUAGES)
 
 
@@ -71,7 +73,7 @@ def home() -> str:
         message = _("logged_in_as", username=g.user["name"])
     else:
         message = _("not_logged_in")
-    return render_template('5-index.html',
+    return render_template('6-index.html',
                            home_title=home_title,
                            home_header=home_header,
                            current_locale=current_locale,
