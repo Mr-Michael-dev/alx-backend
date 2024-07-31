@@ -32,4 +32,5 @@ def home() -> str:
 
 
 if __name__ == '__main__':
+    """run the app"""
     app.run(debug=True)
