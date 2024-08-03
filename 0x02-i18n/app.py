@@ -2,8 +2,9 @@
 """basic Flask app"""
 
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, _
+from flask_babel import Babel, _, format_datetime
 import pytz
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -98,11 +99,18 @@ def home() -> str:
         message = _("logged_in_as", username=g.user["name"])
     else:
         message = _("not_logged_in")
-    return render_template('7-index.html',
+
+    current_time = datetime.now(pytz.timezone(get_timezone()))
+    formatted_time = format_datetime(current_time)
+
+    current_time_message = _("current_time_is", current_time=formatted_time)
+
+    return render_template('index.html',
                            home_title=home_title,
                            home_header=home_header,
                            current_locale=current_locale,
-                           message=message)
+                           message=message,
+                           current_time_message=current_time_message)
 
 
 if __name__ == '__main__':
