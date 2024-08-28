@@ -11,15 +11,14 @@ client.on('error', (err) => {
 // Promisify the hgetall function
 const hGetAllAsync = promisify(client.hgetall).bind(client);
 
-const hashValue = {
-  'Portland': '50',
-  'Seattle': '80',
-  'New York': '20',
-  'Bogota': '20',
-  'Cali': '40',
-  'Paris': '2'
-}
-
+const hashValue = [
+  'Portland', '50',
+  'Seattle', '80',
+  'New York', '20',
+  'Bogota', '20',
+  'Cali', '40',
+  'Paris', '2',
+];
 
 async function displayHashValue(hashName) {
   try {
@@ -32,6 +31,12 @@ async function displayHashValue(hashName) {
 
 client.on('ready', async () => {
   console.log('Redis client connected to the server');
-  await client.hset('HolbertonSchools', hashValue, print);
+  const promises = [];
+  for (let i = 0; i < hashValue.length; i += 2) {
+    promises.push(client.hset('HolbertonSchools', hashValue[i], hashValue[i + 1], print));
+  }
+
+  // Wait for all promises to resolve
+  await Promise.all(promises);
   await displayHashValue('HolbertonSchools');
 });
